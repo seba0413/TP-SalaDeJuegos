@@ -6,15 +6,26 @@ import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
 import { JuegosComponent } from './componentes/juegos/juegos.component';
 import { MenuComponent } from './componentes/menu/menu.component';
 import { AdivinaElNumeroComponent } from './componentes/adivina-el-numero/adivina-el-numero.component';
+import { AdivinaMasListadoComponent } from './componentes/adivina-mas-listado/adivina-mas-listado.component';
+import { ListadoDeResultadosComponent } from './componentes/listado-de-resultados/listado-de-resultados.component';
+import { AgilidadAritmeticaComponent } from './componentes/agilidad-aritmetica/agilidad-aritmetica.component';
+import { AgilidadMasListadoComponent } from './componentes/agilidad-mas-listado/agilidad-mas-listado.component';
+import { ErrorComponent } from './componentes/error/error.component';
+import { JugadoresListadoComponent } from './componentes/jugadores-listado/jugadores-listado.component';
 
 
 
 const routes: Routes = [
   { path: '' , component: PrincipalComponent },
   { path: 'Principal' , component: PrincipalComponent },
+  { path: 'error' , component: ErrorComponent },
+  { path: 'Jugadores' , component: JugadoresListadoComponent }, 
   { path: 'Juegos' , component: JuegosComponent, children:
     [
-       { path: 'Adivina' , component: AdivinaElNumeroComponent }
+       { path: 'Adivina' , component: AdivinaElNumeroComponent },
+       { path: 'AdivinaMasListado' , component: AdivinaMasListadoComponent },
+       { path: 'Agilidad' , component: AgilidadAritmeticaComponent },
+       { path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent }
     ]
   }
 ];
