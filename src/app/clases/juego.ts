@@ -9,14 +9,13 @@ export abstract class Juego {
 
     if (gano)
       this.gano = gano;
-    if(jugador)
+
+    if(jugador)    
       this.jugador=jugador;
+      
     else
       this.jugador= "natalia natalia";
   }
-
-
-  
 
   public abstract verificar():boolean; 
   
