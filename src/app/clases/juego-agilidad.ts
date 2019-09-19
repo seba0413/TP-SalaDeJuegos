@@ -63,4 +63,13 @@ export class JuegoAgilidad extends  Juego{
         this.asignarOperador();
         this.calcularResultado();
     }
+
+    public resetearJuego(): void{
+        this.operador = "";
+        this.primerNumero = 0;
+        this.segundoNumero = 0;
+        this.resultado = 0;
+        this.numeroIngresado = 0;
+        this.gano = false;
+    }
 }

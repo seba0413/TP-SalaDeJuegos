@@ -1,32 +1,29 @@
 <form name="juego">
     <ul>
-       <!-- <li>
-       Primer número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
-      
-      </li>
-      <li>
-       Operador: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
-        
-      </li>
-      <li>
-       Segundo número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
-        
-      </li> -->
+        <div style="text-align:center">
+            <h1> {{nuevoJuego.nombre}}! </h1>
+        </div>
+      <div>
+
+        <h2 [hidden]="!jugando" ><span>{{nuevoJuego.primerNumero}} {{nuevoJuego.operador}} {{nuevoJuego.segundoNumero}} = </span></h2>
+
+      </div>
+
       <div>
       
-        Respuesta: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%"/>
+        <h2 [hidden]="!jugando"> Respuesta: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%"/></h2>
          
       </div>
 
       <div>
 
-        <h2 [hidden]="ocultarVerificar" ><button (click)="verificar()" class="btn btn-success btn-lg">Verificar {{Tiempo}} </button></h2>
+        <h2 [hidden]="ocultarVerificar" ><button (click)="verificar()" class="btn btn-success btn-lg">Verificar {{Tiempo}} </button></h2> <br>
 
       </div>
 
       <div>
 
-        <h2 [hidden]="!ocultarVerificar"><button  (click)="NuevoJuego()"  class="btn btn-info btn-lg">Nuevo</button></h2>
+        <div [hidden]="!ocultarVerificar" style="text-align:center"><button  (click)="NuevoJuego()"  class="btn btn-info btn-lg">Nuevo Juego </button></div>
 
       </div>
       
