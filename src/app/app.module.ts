@@ -17,6 +17,7 @@ import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
 import { ErrorComponent } from './componentes/error/error.component';
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { JugadoresListadoComponent } from './componentes/jugadores-listado/jugadores-listado.component';
+import { JuegoscardComponent } from './componentes/juegoscard/juegoscard.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { JugadoresListadoComponent } from './componentes/jugadores-listado/jugad
     AnagramaComponent,
     ErrorComponent,
     InputJugadoresComponent,
-    JugadoresListadoComponent
+    JugadoresListadoComponent,
+    JuegoscardComponent
   ],
   imports: [
     BrowserModule,
