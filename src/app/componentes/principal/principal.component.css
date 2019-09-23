@@ -1,7 +1,10 @@
 .imagenDeMenu{
-    width: 80px;
-    height: 70px;
-    }
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin-right: 2em;
+    vertical-align: middle;
+}
     
 .hero-text {
     text-align: center;
@@ -9,5 +12,19 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color: whitesmoke;
+}
+
+.cab {
+    height: 50px;
+    background-color: darkslategrey;
+}
+
+a {
+    text-decoration: none;
+    color: darkblue;
+}
+
+p {
     color: #100000;
-    }
+}
