@@ -8,35 +8,45 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './adivina-el-numero.component.html',
   styleUrls: ['./adivina-el-numero.component.css']
 })
+
 export class AdivinaElNumeroComponent implements OnInit {
+  
  @Output() enviarJuego: EventEmitter<any>= new EventEmitter<any>();
 
   nuevoJuego: JuegoAdivina;
   Mensajes:string;
   contador:number;
   ocultarVerificar:boolean;
+  ocultarEsperando: boolean = true; 
  
   constructor() { 
+
     this.nuevoJuego = new JuegoAdivina();
     console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
     this.ocultarVerificar=false;
   }
+
   generarnumero() {
+
     this.nuevoJuego.generarnumero();
     this.contador=0;
+    this.ocultarEsperando = false;
   }
-  verificar()
-  {
+
+  verificar()  {
+
     this.contador++;
     this.ocultarVerificar=true;
-    console.info("numero Secreto:",this.nuevoJuego.gano);  
+    console.info("numero Secreto:",this.nuevoJuego.gano); 
+
     if (this.nuevoJuego.verificar()){
-      
-      this.enviarJuego.emit(this.nuevoJuego);
+ 
+      this.ocultarEsperando = true; 
+      this.enviarJuego.emit(this.nuevoJuego); 
       this.MostarMensaje("Sos un Genio!!!",true);
       this.nuevoJuego.numeroSecreto=0;
 
-    }else{
+    } else {
 
       let mensaje:string;
       switch (this.contador) {
@@ -63,30 +73,37 @@ export class AdivinaElNumeroComponent implements OnInit {
             mensaje="Ya le erraste "+ this.contador+" veces";
           break;
       }
-      this.MostarMensaje("#"+this.contador+" "+mensaje+" ayuda :"+this.nuevoJuego.retornarAyuda());
-     
-
+      this.MostarMensaje("#"+this.contador+" "+mensaje+". Ayuda : "+this.nuevoJuego.retornarAyuda());
     }
     console.info("numero Secreto:",this.nuevoJuego.gano);  
   }  
 
-  MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {
+  MostarMensaje ( mensaje: string = "este es el mensaje", ganador: boolean = false) {
+
+    var modelo=this;
     this.Mensajes=mensaje;    
     var x = document.getElementById("snackbar");
-    if(ganador)
-      {
-        x.className = "show Ganador";
-      }else{
+    if(ganador) {
+      x.className = "show Ganador";
+
+    } 
+    else {
         x.className = "show Perdedor";
-      }
-    var modelo=this;
-    setTimeout(function(){ 
+        this.ocultarEsperando = true; 
+    }    
+
+    setTimeout(function() { 
       x.className = x.className.replace("show", "");
-      modelo.ocultarVerificar=false;
-     }, 3000);
+      modelo.ocultarVerificar = false;
+      modelo.ocultarEsperando = false; 
+
+      if(ganador)
+        modelo.ocultarEsperando = true; 
+
+    }, 3000);
     console.info("objeto",x);
-  
-   }  
+  }  
+
   ngOnInit() {
   }
 

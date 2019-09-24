@@ -18,6 +18,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
   repetidor:any;
   jugando: boolean;
   mensaje: string;
+  ocultarEsperando: boolean = true; 
   private subscription: Subscription;
 
   ngOnInit() {
@@ -31,9 +32,10 @@ export class AgilidadAritmeticaComponent implements OnInit {
   }
 
   NuevoJuego() {
-    this.nuevoJuego.resetearJuego();
+    this.focoEnInput();
     this.jugando = true; 
-    this.ocultarVerificar=false;
+    this.ocultarVerificar = false;
+    this.ocultarEsperando = false; 
     this.nuevoJuego.generarCalculo();
     this.repetidor = setInterval(()=>{ 
       
@@ -45,20 +47,53 @@ export class AgilidadAritmeticaComponent implements OnInit {
         this.ocultarVerificar=true;
         this.Tiempo=5;
       }
-      }, 900);
+      }, 1000);
   }
 
-  verificar()
-  {
-    if(this.nuevoJuego.verificar())
-      alert("Bien! No sos tan burr@!");
-    else
-      alert("jajaja batiste cualquiera!");
-      
-    this.ocultarVerificar=false;
-    clearInterval(this.repetidor);  
-
-    this.jugando = false;
+  verificar()  { debugger 
+    if(this.nuevoJuego.verificar()) {
+      this.ocultarEsperando = true; 
+      this.enviarJuego.emit(this.nuevoJuego); 
+      this.MostarMensaje("¡Bien! No sos tan burr@!",true);
+    }
+    else {
+      this.MostarMensaje("Batiste cualquiera ; ). ¡Proba otra vez!", false)
+    }
+    this.jugando = false; 
+    this.nuevoJuego.resetearJuego();
   }  
+
+  MostarMensaje ( mensaje: string = "este es el mensaje", ganador: boolean = false) {debugger
+
+    var modelo=this;
+    this.mensaje=mensaje;    
+    var x = document.getElementById("snackbar");
+    if(ganador) {
+      x.className = "show Ganador";
+
+    } 
+    else {
+        x.className = "show Perdedor";
+        this.ocultarEsperando = true; 
+    }    
+
+    setTimeout(function() { 
+      x.className = x.className.replace("show", "");
+      modelo.ocultarVerificar = false;
+      modelo.ocultarEsperando = false; 
+
+      if(ganador)
+        modelo.ocultarEsperando = true; 
+
+    }, 3000);
+    console.info("objeto",x);
+  }  
+
+  focoEnInput(){
+    setTimeout(()=>{
+      (<HTMLInputElement>document.getElementById("numIngresado")).value = null;
+      document.getElementById("numIngresado").focus();
+    }, 1);
+  }
 
 }

@@ -1,38 +1,23 @@
-<form name="juego">
-    <ul>
-        <div style="text-align:center">
-            <h1> {{nuevoJuego.nombre}}! </h1>
-        </div>
-      <div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <h2 [hidden]="!jugando" ><span>{{nuevoJuego.primerNumero}} {{nuevoJuego.operador}} {{nuevoJuego.segundoNumero}} = </span></h2>
+  <div style="text-align:center">
+      <h1> {{nuevoJuego.nombre}}! </h1>
+  </div>
 
-      </div>
+  <div *ngIf="!jugando">
+    <h2 style="text-align:center"><button  (click)="NuevoJuego()">Nuevo Juego </button></h2>
+  </div>
 
-      <div>
-      
-        <h2 [hidden]="!jugando"> Respuesta: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%"/></h2>
-         
-      </div>
+  <div *ngIf="jugando">
+    <h2 [hidden]="!jugando" class="cuenta"><span>Calcular:  {{nuevoJuego.primerNumero}} {{nuevoJuego.operador}} {{nuevoJuego.segundoNumero}} = </span></h2>      
+     
+    <label class="ingrese "[hidden]="!jugando"> Respuesta:  <input id="numIngresado" [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control"/> </label>
 
-      <div>
+    <h2 [hidden]="ocultarVerificar" ><button (click)="verificar()" class="btn btn-success btn-lg">Verificar {{Tiempo}} </button></h2>     
 
-        <h2 [hidden]="ocultarVerificar" ><button (click)="verificar()" class="btn btn-success btn-lg">Verificar {{Tiempo}} </button></h2> <br>
+    <h5 style="text-align: center"><p [hidden]="ocultarEsperando" ><i class="fa fa-spinner fa-spin"></i>Esperando que ingrese un número</p></h5>
 
-      </div>
+    <h3 [hidden]="!nuevoJuego.gano" style="text-align: center">¡Usted adivino el número!</h3>
+  </div>
 
-      <div>
-
-        <div [hidden]="!ocultarVerificar" style="text-align:center"><button  (click)="NuevoJuego()"  class="btn btn-info btn-lg">Nuevo Juego </button></div>
-
-      </div>
-      
-      <div>
-        <!-- <h2><p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p></h2>
-    
-        <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
-        <h3 [hidden]="nuevoJuego.gano">usted aún no gano </h3> -->
-        </div>
-    </ul>
-    
-    </form>
+<div id="snackbar">{{mensaje}}</div>
