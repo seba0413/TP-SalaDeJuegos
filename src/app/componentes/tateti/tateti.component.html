@@ -1,0 +1,28 @@
+<div style="text-align:center">
+    <h1> ¡{{nuevoJuego.nombre}}! </h1>
+</div>
+<div *ngIf="!jugando">
+  <h2 style="text-align:center"><button  (click)="NuevoJuego()">Jugar al Ta-Te-Ti </button></h2>
+</div>
+<div *ngIf="jugando" class="col-6 generalShadow" 
+  style="background-color: lightgreen; border-radius: 15px; margin-top:50px; margin-left: 25%;">
+  <div style="width:100%" class="pull-center">
+    <div class="row">
+      <div class="col-4 celda1 tatetiValue celda" (click)="juegaJugador(0)">{{celdas[0].jugador}}</div>
+      <div class="col-4 celda2 tatetiValue celda" (click)="juegaJugador(1)">{{celdas[1].jugador}}</div>
+      <div class="col-4 celda3 tatetiValue celda" (click)="juegaJugador(2)">{{celdas[2].jugador}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4 celda4 tatetiValue celda" (click)="juegaJugador(3)">{{celdas[3].jugador}}</div>
+      <div class="col-4 celda5 tatetiValue celda" (click)="juegaJugador(4)">{{celdas[4].jugador}}</div>
+      <div class="col-4 celda6 tatetiValue celda" (click)="juegaJugador(5)">{{celdas[5].jugador}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4 celda7 tatetiValue celda" (click)="juegaJugador(6)">{{celdas[6].jugador}}</div>
+      <div class="col-4 celda8 tatetiValue celda" (click)="juegaJugador(7)">{{celdas[7].jugador}}</div>
+      <div class="col-4 celda9 tatetiValue celda" (click)="juegaJugador(8)">{{celdas[8].jugador}}</div>
+    </div>
+  </div>
+</div>
+
+<div id="snackbar">{{mensaje}}</div>

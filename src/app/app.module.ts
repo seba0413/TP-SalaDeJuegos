@@ -18,6 +18,8 @@ import { ErrorComponent } from './componentes/error/error.component';
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { JugadoresListadoComponent } from './componentes/jugadores-listado/jugadores-listado.component';
 import { JuegoscardComponent } from './componentes/juegoscard/juegoscard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TatetiComponent } from './componentes/tateti/tateti.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +37,14 @@ import { JuegoscardComponent } from './componentes/juegoscard/juegoscard.compone
     ErrorComponent,
     InputJugadoresComponent,
     JugadoresListadoComponent,
-    JuegoscardComponent
+    JuegoscardComponent,
+    TatetiComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

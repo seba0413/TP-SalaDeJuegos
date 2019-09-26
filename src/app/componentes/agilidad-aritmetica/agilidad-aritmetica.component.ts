@@ -47,7 +47,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
         this.ocultarVerificar=true;
         this.Tiempo=5;
       }
-      }, 1000);
+      }, 900);
   }
 
   verificar()  { debugger 
@@ -63,7 +63,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
     this.nuevoJuego.resetearJuego();
   }  
 
-  MostarMensaje ( mensaje: string = "este es el mensaje", ganador: boolean = false) {debugger
+  MostarMensaje ( mensaje: string = "este es el mensaje", ganador: boolean = false) {
 
     var modelo=this;
     this.mensaje=mensaje;    

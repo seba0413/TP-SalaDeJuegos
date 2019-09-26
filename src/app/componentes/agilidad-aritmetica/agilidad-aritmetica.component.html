@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <div style="text-align:center">
-      <h1> {{nuevoJuego.nombre}}! </h1>
+      <h1> ¡{{nuevoJuego.nombre}}! </h1>
   </div>
 
   <div *ngIf="!jugando">
-    <h2 style="text-align:center"><button  (click)="NuevoJuego()">Nuevo Juego </button></h2>
+    <h2 style="text-align:center"><button  (click)="NuevoJuego()">Jugar a Agilidad Aritmética </button></h2>
   </div>
 
   <div *ngIf="jugando">

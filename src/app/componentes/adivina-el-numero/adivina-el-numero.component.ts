@@ -18,6 +18,7 @@ export class AdivinaElNumeroComponent implements OnInit {
   contador:number;
   ocultarVerificar:boolean;
   ocultarEsperando: boolean = true; 
+  ocultarIngrese: boolean = true; 
  
   constructor() { 
 
@@ -28,13 +29,15 @@ export class AdivinaElNumeroComponent implements OnInit {
 
   generarnumero() {
 
+    this.focoEnInput();
+    this.ocultarIngrese = false; 
     this.nuevoJuego.generarnumero();
     this.contador=0;
     this.ocultarEsperando = false;
   }
 
   verificar()  {
-
+    this.focoEnInput();
     this.contador++;
     this.ocultarVerificar=true;
     console.info("numero Secreto:",this.nuevoJuego.gano); 
@@ -43,6 +46,7 @@ export class AdivinaElNumeroComponent implements OnInit {
  
       this.ocultarEsperando = true; 
       this.enviarJuego.emit(this.nuevoJuego); 
+      this.ocultarIngrese = true; 
       this.MostarMensaje("Sos un Genio!!!",true);
       this.nuevoJuego.numeroSecreto=0;
 
@@ -51,10 +55,10 @@ export class AdivinaElNumeroComponent implements OnInit {
       let mensaje:string;
       switch (this.contador) {
         case 1:
-          mensaje="No, intento fallido, animo";
+          mensaje="Intento fallido, ¡Arriba! ";
           break;
           case 2:
-          mensaje="No,Te estaras Acercando???";
+          mensaje="No, ¿Te estaras Acercando? ";
           break;
           case 3:
           mensaje="No es, Yo crei que la tercera era la vencida.";
@@ -103,6 +107,13 @@ export class AdivinaElNumeroComponent implements OnInit {
     }, 3000);
     console.info("objeto",x);
   }  
+
+  focoEnInput(){
+    setTimeout(()=>{
+      (<HTMLInputElement>document.getElementById("ingrese")).value = null;
+      document.getElementById("ingrese").focus();
+    }, 1);
+  }
 
   ngOnInit() {
   }

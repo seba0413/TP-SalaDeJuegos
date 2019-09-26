@@ -3,16 +3,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div style="text-align:center">
   <h1>
-    {{nuevoJuego.nombre}}!
+    ¡{{nuevoJuego.nombre}}!
   </h1>
  </div>
 
-   <label class="ingrese"><strong>Ingrese un numero:  </strong></label>  <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control"/>
+   <label class="ingrese" [hidden]="ocultarIngrese"><strong>Ingrese un numero:  </strong></label>  <input id="ingrese" [hidden]="ocultarIngrese" [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control"/>
     <!-- <h1>{{nuevoJuego.numeroIngresado}}  </h1> -->
  
     <h2 [hidden]="ocultarVerificar"><button  *ngIf="nuevoJuego.numeroSecreto!=0" (click)="verificar()">Verificar</button></h2>
  
-    <h2><button *ngIf="nuevoJuego.numeroSecreto==0 " (click)="generarnumero()">Nuevo número secreto</button></h2>
+    <h2><button *ngIf="nuevoJuego.numeroSecreto==0 " (click)="generarnumero()">Jugar al Número Secreto</button></h2>
  
     <h3 style="text-align: center"><p [hidden]="ocultarEsperando" ><i class="fa fa-spinner fa-spin"></i>Esperando que ingrese un número</p></h3>
 

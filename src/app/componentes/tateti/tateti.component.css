@@ -1,0 +1,124 @@
+div#tablero {
+    width:310px;
+    height:310px; 
+    padding:0px; 
+    border: 7px solid #999; 
+    background-color:white; 
+    margin: 20px auto; 
+    cursor:pointer;
+}
+
+div#tablero div {
+    width:100px;
+    height:100px;
+    float:left; 
+    margin:0px; 
+    font-size: 90px; 
+    text-align:center;
+}
+
+.celda1,.celda2,.celda3,.celda4,.celda5,.celda6 { 
+    border-bottom: 5px solid black;
+}
+
+.celda1,.celda2,.celda4,.celda5,.celda7,.celda8 {
+    border-right: 5px solid black;
+}
+
+div#tablero > div:hover {
+    background-color:#ddd;
+}
+
+div#consola {
+    width:310px;
+    height:30px; 
+    padding:7px; 
+    border: 
+    5px solid #999; 
+    background-color:white; 
+    margin: 10px auto; 
+    text-align:center; 
+    color:darkgreen;
+}
+
+.celda{
+    width:70px;height: 120px;
+}
+
+.tatetiValue{
+    color: #FFF;
+    text-align: center;
+    font:  100px arial, Serif;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    content: 'O';
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top:5vh;
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.Ganador {
+    background-color: #059F2F;
+}
+
+#snackbar.Perdedor {
+    background-color: #2271b3;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}

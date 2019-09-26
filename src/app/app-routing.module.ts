@@ -13,6 +13,7 @@ import { AgilidadMasListadoComponent } from './componentes/agilidad-mas-listado/
 import { ErrorComponent } from './componentes/error/error.component';
 import { JugadoresListadoComponent } from './componentes/jugadores-listado/jugadores-listado.component';
 import { JuegoscardComponent } from './componentes/juegoscard/juegoscard.component';
+import { TatetiComponent } from './componentes/tateti/tateti.component';
 
 
 
@@ -27,6 +28,7 @@ const routes: Routes = [
        { path: 'AdivinaMasListado' , component: AdivinaMasListadoComponent },
        { path: 'Agilidad' , component: AgilidadAritmeticaComponent },
        { path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent },
+       { path: 'Tateti' , component: TatetiComponent },
        { path: 'Card' , component: JuegoscardComponent }
     ]
   }
