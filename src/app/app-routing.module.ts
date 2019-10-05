@@ -14,6 +14,7 @@ import { ErrorComponent } from './componentes/error/error.component';
 import { JugadoresListadoComponent } from './componentes/jugadores-listado/jugadores-listado.component';
 import { JuegoscardComponent } from './componentes/juegoscard/juegoscard.component';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
+import { PptComponent } from './componentes/ppt/ppt.component';
 
 
 
@@ -29,7 +30,8 @@ const routes: Routes = [
        { path: 'Agilidad' , component: AgilidadAritmeticaComponent },
        { path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent },
        { path: 'Tateti' , component: TatetiComponent },
-       { path: 'Card' , component: JuegoscardComponent }
+       { path: 'Card' , component: JuegoscardComponent },
+       { path: 'Ppt' , component: PptComponent }
     ]
   }
 ];

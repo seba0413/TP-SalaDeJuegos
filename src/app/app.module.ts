@@ -20,6 +20,7 @@ import { JugadoresListadoComponent } from './componentes/jugadores-listado/jugad
 import { JuegoscardComponent } from './componentes/juegoscard/juegoscard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
+import { PptComponent } from './componentes/ppt/ppt.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TatetiComponent } from './componentes/tateti/tateti.component';
     InputJugadoresComponent,
     JugadoresListadoComponent,
     JuegoscardComponent,
-    TatetiComponent
+    TatetiComponent,
+    PptComponent
   ],
   imports: [
     BrowserModule,

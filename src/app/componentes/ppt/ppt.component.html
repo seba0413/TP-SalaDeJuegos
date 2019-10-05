@@ -1,0 +1,35 @@
+<div class="container" >
+    <div class="row">
+        <div class="col-6">
+            <h3>ELEGI TU ELEMENTO</h3>
+        </div>
+        <div class="col-6" [hidden] = "eligio">
+            <h3>TU OPONENTE ELIGIO </h3>
+        </div>
+    </div>
+    <div class= "row divPpt">
+        <div class = "col-6">
+            <div class="col-xl-2">
+                <a (click) = "asignarElemento('piedra')"><img src="{{imagenPiedra}}" alt="" class="media-object imagenPpt"></a> 
+            </div>
+            <div class="col-xl-2" >
+                <a (click) = "asignarElemento('papel')"><img src="{{imagenPapel}}" alt="" class="media-object imagenPpt"></a> 
+            </div>
+            <div class="col-xl-2">
+                <a (click) = "asignarElemento('tijera')"> <img src="{{imagenTijera}}" alt="" class="media-object imagenPpt"></a>
+            </div>
+        </div>
+        <div class= "col-6" [hidden] = "eligio">
+            <div class="row">
+                <div class="col-12">
+                    <a (click) = "asignarElemento()"><img src={{elementoAsignado}} alt="" class="media-object imagenPpt"></a> 
+                </div>
+            </div>
+            <div class="row resultado">
+                <div class="col-12">
+                    <h2>{{textoResultado}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  

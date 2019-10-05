@@ -1,0 +1,19 @@
+.imagenPpt{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-top: 5px; 
+    border: 5px solid darkcyan ;
+    border-style: ridge;  
+}
+
+.divPpt {
+    margin-top: 20px; 
+    
+}
+
+.resultado {
+    margin-top: 50px; 
+    color: red;
+
+}
