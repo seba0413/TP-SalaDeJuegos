@@ -1,35 +1,56 @@
-<div class="container" >
+<div style="text-align:center" [hidden] = "ocultarNuevoJuego">
+        <h1> ¡Piedra Papel o Tijera! </h1>
+        <h2 style="text-align:center"><button (click)= "NuevoJuego()" class="boton-nuevo">Jugar a Piedra, papel o tijera </button></h2>
+    </div>
+
+<div class="container" [hidden] = "ocultarElementos" >
     <div class="row">
-        <div class="col-6">
-            <h3>ELEGI TU ELEMENTO</h3>
-        </div>
-        <div class="col-6" [hidden] = "eligio">
-            <h3>TU OPONENTE ELIGIO </h3>
+        <div class="col-12 div-palabra">
+            <h1>ELEGI TU ELEMENTO</h1>
         </div>
     </div>
-    <div class= "row divPpt">
-        <div class = "col-6">
-            <div class="col-xl-2">
-                <a (click) = "asignarElemento('piedra')"><img src="{{imagenPiedra}}" alt="" class="media-object imagenPpt"></a> 
-            </div>
-            <div class="col-xl-2" >
-                <a (click) = "asignarElemento('papel')"><img src="{{imagenPapel}}" alt="" class="media-object imagenPpt"></a> 
-            </div>
-            <div class="col-xl-2">
-                <a (click) = "asignarElemento('tijera')"> <img src="{{imagenTijera}}" alt="" class="media-object imagenPpt"></a>
-            </div>
+    <div class= "row divPpt">        
+        <div class="col-xl-4">
+            <a (click) = "asignarElemento('piedra')"><img src="{{imagenPiedra}}" alt="" class="media-object imagenPpt"></a> 
         </div>
-        <div class= "col-6" [hidden] = "eligio">
-            <div class="row">
-                <div class="col-12">
-                    <a (click) = "asignarElemento()"><img src={{elementoAsignado}} alt="" class="media-object imagenPpt"></a> 
-                </div>
-            </div>
-            <div class="row resultado">
-                <div class="col-12">
-                    <h2>{{textoResultado}}</h2>
-                </div>
-            </div>
+        <div class="col-xl-4" >
+            <a (click) = "asignarElemento('papel')"><img src="{{imagenPapel}}" alt="" class="media-object imagenPpt"></a> 
+        </div>
+        <div class="col-xl-4">
+            <a (click) = "asignarElemento('tijera')"> <img src="{{imagenTijera}}" alt="" class="media-object imagenPpt"></a>
         </div>
     </div>
 </div>  
+
+<div class="container" [hidden] = "ocultarResultados" >
+    <div class="row">
+        <div class="col-6">
+            <div class="row div-palabra">
+                <div class="col-12">
+                    <h1>ELEMENTO ELEGIDO</h1>
+                </div>
+                <div class="col-12 divPpt">
+                    <img src="{{elementoSeleccionado}}" alt="" class="imagenPpt">
+                </div>
+            </div>            
+        </div>
+        <div class="col-6">
+            <div class="row div-palabra">
+                <div class="col-12">
+                    <h1>ELEMENTO OPONENTE</h1>
+                </div>
+                <div class="col-12 divPpt">
+                    <img src="{{elementoAsignado}}" alt="" class="imagenPpt">
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 resultado">
+            <h1 class="resultado">{{textoResultado}}</h1>
+        </div>
+        <div class="col-12">
+            <button type="button" (click) = "RepetirJuego()" class="btn btn-success btn-lg" > Probar otra vez</button>
+        </div>            
+    </div>
+</div>

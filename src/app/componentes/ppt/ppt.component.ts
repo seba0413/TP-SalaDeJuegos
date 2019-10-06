@@ -11,38 +11,35 @@ export class PptComponent implements OnInit {
   imagenPapel: string;
   imagenTijera: string; 
   elementoAsignado: string; 
-  eligio: boolean = true; 
+  elementoSeleccionado: string;
   textoResultado: string;
-  loop: any;
+  ocultarNuevoJuego: boolean;
+  ocultarElementos: boolean; 
+  ocultarResultados: boolean;  
 
   constructor() {
     this.imagenPiedra = "./assets/imagenes/piedra.jpg";
     this.imagenPapel = "./assets/imagenes/papel.jpg";
     this.imagenTijera = "./assets/imagenes/tijera.jpg";
 
+    this.ocultarNuevoJuego = false; 
+    this.ocultarElementos = true;
+    this.ocultarResultados = true; 
+
   }
 
-  // nuevoJuego() {
+   NuevoJuego() {
 
-  //   this.loop = setInterval(() => {
-  //     this.nuevoJuego.generarJugada();
-  //     this.setImagenes();
-  //     if (this.stop) {
-  //       this.nuevoJuego.jugadaUsuario = this.jugadaSeleccionada;
-  //       this.setImagenes();
-  //       clearInterval(this.repetidor);
-  //       this.verificar();
-  //     }
-  //   }, 80);
-
-    // this.eligio = false; 
-    // this.verificar(elementoSeleccionado);
-
-  // }
+    this.ocultarNuevoJuego = true;
+    this.ocultarElementos = false;
+ }
   
 
   asignarElemento(elementoSeleccionado: string){
+
+    this.elementoSeleccionado = elementoSeleccionado;
     var numero = Math.floor((Math.random() * 100));
+
     if(numero > 66)
         this.elementoAsignado = this.imagenPiedra;
     else if (numero > 33)
@@ -50,8 +47,10 @@ export class PptComponent implements OnInit {
     else
         this.elementoAsignado = this.imagenTijera;
 
-    this.eligio = false;
     this.verificar(elementoSeleccionado);    
+
+    this.ocultarElementos = true; 
+    this.ocultarResultados = false; 
 
   }
 
@@ -59,6 +58,8 @@ export class PptComponent implements OnInit {
     switch(elementoSeleccionado)
     {
       case 'piedra':
+        this.elementoSeleccionado = this.imagenPiedra;
+
         if(this.elementoAsignado == this.imagenPiedra)
           this.textoResultado= "¡Empataste!";
         else if(this.elementoAsignado == this.imagenPapel)
@@ -67,6 +68,8 @@ export class PptComponent implements OnInit {
           this.textoResultado= "¡Ganaste!";
       break;
       case 'papel':
+        this.elementoSeleccionado = this.imagenPapel;
+
         if(this.elementoAsignado == this.imagenPiedra)
           this.textoResultado= "¡Ganaste!"
         else if(this.elementoAsignado == this.imagenPapel)
@@ -75,6 +78,8 @@ export class PptComponent implements OnInit {
           this.textoResultado= "¡Perdiste!";
       break;
       case 'tijera':
+        this.elementoSeleccionado = this.imagenTijera;
+
         if(this.elementoAsignado == this.imagenPiedra)
           this.textoResultado= "¡Perdiste!";
         else if(this.elementoAsignado == this.imagenPapel)
@@ -83,7 +88,15 @@ export class PptComponent implements OnInit {
           this.textoResultado= "¡Empataste!";
       break;
     }
+  }
 
+  RepetirJuego() {
+    this.ocultarResultados = true; 
+    this.ocultarElementos = false; 
+
+    this.elementoAsignado = ""; 
+    this.elementoSeleccionado = "";
+    this.textoResultado = "";
   }
 
 

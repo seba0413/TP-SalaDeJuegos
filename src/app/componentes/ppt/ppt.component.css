@@ -1,19 +1,39 @@
 .imagenPpt{
-    width: 100px;
-    height: 100px;
-    float: left;
+    width: 200px;
+    height: 200px;
+    /* float: left; */
     margin-top: 5px; 
     border: 5px solid darkcyan ;
     border-style: ridge;  
 }
 
 .divPpt {
-    margin-top: 20px; 
-    
+    margin-top: 30px;     
+}
+
+.div-palabra {
+
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    color: blue;
+}
+
+.boton-nuevo {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    /* margin: 8px 0; */
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top:5vh;
 }
 
 .resultado {
-    margin-top: 50px; 
+    text-align: center;
+    font-size: 50px;
     color: red;
-
 }
