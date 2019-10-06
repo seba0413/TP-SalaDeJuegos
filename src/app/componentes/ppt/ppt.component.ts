@@ -49,7 +49,9 @@ export class PptComponent implements OnInit {
         this.elementoAsignado = this.imagenPapel;
     else
         this.elementoAsignado = this.imagenTijera;
-        
+
+    this.eligio = false;
+    this.verificar(elementoSeleccionado);    
 
   }
 
