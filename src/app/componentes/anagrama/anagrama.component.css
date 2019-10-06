@@ -1,0 +1,86 @@
+.div-palabra {
+
+    margin-top: 2vh;
+    text-align: center;
+    color: blue;
+
+}
+
+.boton-nuevo {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    /* margin: 8px 0; */
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top:5vh;
+}
+
+.boton-palabra {
+
+    width: 150px;
+    height: 50px;
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+   
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+#snackbar.Ganador {
+    background-color: #059F2F;
+}
+#snackbar.Perdedor {
+    background-color: #2271b3;
+}
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.ingrese {
+    font-size: 30px;
+    margin-left: 35%;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}

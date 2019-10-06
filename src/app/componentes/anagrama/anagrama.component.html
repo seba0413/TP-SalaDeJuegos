@@ -1,1 +1,38 @@
-<p>anagrama works!</p>
+
+<div style="text-align:center" [hidden] = "ocultarNuevoJuego">
+    <h1> ¡Anagramas! </h1>
+    <h2 style="text-align:center"><button (click)= "NuevoJuego()" class="boton-nuevo">Jugar a Anagramas </button></h2>
+</div>
+
+<div class="container" [hidden] = "ocultarBotones">
+    <div class="row">
+        <div class="col-12 div-palabra">
+            <h2>Elegi una palabra</h2>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-12 div-palabra" *ngFor="let palabra of palabras">          
+            <button type="button" class="btn btn-info btn-lg boton-palabra" (click) = "elegirPalabra(palabra)">{{palabra}}</button>            
+        </div>
+    </div>
+</div>
+
+<div class="container" [hidden] = "ocultarInputs">
+    <div class="row">
+        <div class="col-12 div-palabra">
+            <h2>¡La palabra {{palabraElegida}} tiene {{anagramas.length}} anagramas!</h2>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-12 div-palabra" *ngFor="let anagrama of anagramas">          
+            <input type="text" name="inputsRespuesta">            
+        </div>
+        <div class="col-12 div-palabra">
+            <button type="button" class="btn btn-info btn-lg" (click) = "obtenerRespuestas()">Enviar Respuestas</button>
+        </div>
+    </div>
+</div>
+
+<div id="snackbar">{{mensaje}}</div>
+ 
+
