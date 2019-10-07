@@ -1,0 +1,24 @@
+<div style="text-align:center" [hidden] = "ocultarNuevoJuego">
+    <h1> ¡Preguntas de fútbol! </h1>
+    <h2 style="text-align:center"><button (click)= "NuevoJuego()" class="boton-nuevo">Jugar a Preguntados Fútbol </button></h2>
+</div>
+
+<div class="container" [hidden] = "!ocultarNuevoJuego">
+    <div class="row">
+        <div class="col-12 div-palabra">
+            <h2>{{pregunta}}</h2>
+        </div>        
+    </div>
+    <div class="row" style="margin-top: 3vh">
+        <div class="col-6 div-palabra" *ngFor="let respuesta of respuestas">          
+            <button type="button" class="btn btn-info btn-lg boton-palabra" (click) = "eligeRespuesta(respuesta.id)" name="botonesRespuestas">{{respuesta.textoRespuesta}}</button>            
+        </div>
+    </div>
+    <div class="row" [hidden] = "ocultarBotonSiguiente">
+        <div class="col-12 div-siguiente">          
+            <button type="button" class="btn btn-success btn-lg" (click) = "siguiente()">Siguiente Pregunta</button>            
+        </div>
+    </div>
+</div> 
+
+<div id="snackbar">{{mensaje}}</div>

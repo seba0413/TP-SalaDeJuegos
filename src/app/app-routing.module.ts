@@ -11,6 +11,7 @@ import { JuegoscardComponent } from './componentes/juegoscard/juegoscard.compone
 import { TatetiComponent } from './componentes/tateti/tateti.component';
 import { PptComponent } from './componentes/ppt/ppt.component';
 import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
+import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
 
 
 
@@ -26,7 +27,8 @@ const routes: Routes = [
        { path: 'Tateti' , component: TatetiComponent },
        { path: 'Card' , component: JuegoscardComponent },
        { path: 'Ppt' , component: PptComponent },
-       { path: 'Anagrama' , component: AnagramaComponent }
+       { path: 'Anagrama' , component: AnagramaComponent },
+       { path: 'Preguntados' , component: PreguntadosComponent }
     ]
   }
 ];
