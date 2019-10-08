@@ -1,0 +1,33 @@
+.estilo-titulo {
+    text-align: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.div-imagen {
+    text-align: center;
+}
+
+.estilo-imagen {
+
+    width: 70%;
+    height: 70%;
+}
+
+.estilo-form {
+
+    font-size: 25px;
+    margin-top: 6vh;
+    text-align: center;
+}
+
+input {
+    height: 50px;
+    width: 500px; 
+    margin-top: 5vh;
+}
+
+.estilo-boton {
+    width: 250px; 
+    margin-top: 5vh;
+}

@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" (click) = "ingresar()">Ingresar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" (click) = "registrarse()">Registrarse <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/seba0413">GitHub <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/QuienSoy">Quien Soy</a>
+        </li>
+      </ul>
+      <span class="form-inline my-2 my-lg-0">
+          Sebastian Pasquini
+      </span>
+    </div>
+  </nav>
+
+<div class="container" [hidden] = "ocultarImagen">
+    <div class="row">
+        <div class="col-12 div-imagen">
+            <h1 style="font-size:50px; color: blue;">Sala de Juegos</h1><br>
+            <img src="./assets/imagenes/salaJuegos.jpg" alt="" class="estilo-imagen" >
+        </div>
+    </div>
+</div>
+
+
+<form [hidden] = "ocultarRegistro" class="estilo-form">
+    <div class="form-group">
+        <h3>REGISTRO DE USUARIO</h3>
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)] = "nuevoUsuario" name="nuevoUsuario"  placeholder="Ingrese un nombre de usuario">
+    </div>
+    <div class="form-group">
+        <input type="password" [(ngModel)] = "nuevaContrasena" name="nuevaContrasena" placeholder="Ingrese una contraseña">
+    </div>
+    <div class="form-group">
+        <button type="button" (click) = "registroDeUsuario()" class="btn btn-success btn-lg estilo-boton">Registrarse</button>
+    </div>
+</form>
+
+<form [hidden] = "ocultarIngreso" class="estilo-form">
+    <div class="form-group">
+        <h3>INGRESO DE USUARIO</h3>
+    </div>
+    <div class="form-group">
+        <input type="text" [(ngModel)] = "usuarioLogueado" name="usuarioLogueado" placeholder="Ingrese su usuario">
+    </div>
+    <div class="form-group">
+        <input type="password" [(ngModel)] = "contrasenaUsuarioLogueado" name="contrasenaUsuarioLogueado"  placeholder="Ingrese su contraseña">
+    </div>
+    <div class="form-group">
+        <button type="button" (click) = "ingresoDeUsuario()" class="btn btn-success btn-lg estilo-boton">Ingresar</button>
+    </div>
+</form>
+

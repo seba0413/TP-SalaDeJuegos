@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
 import { PptComponent } from './componentes/ppt/ppt.component';
 import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PreguntadosComponent } from './componentes/preguntados/preguntados.comp
     JuegoscardComponent,
     TatetiComponent,
     PptComponent,
-    PreguntadosComponent
+    PreguntadosComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

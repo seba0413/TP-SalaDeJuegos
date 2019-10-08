@@ -12,11 +12,12 @@ import { TatetiComponent } from './componentes/tateti/tateti.component';
 import { PptComponent } from './componentes/ppt/ppt.component';
 import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
 import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 
 
 const routes: Routes = [
-  { path: '' , component: PrincipalComponent },
+  { path: '' , component: LoginComponent },
   { path: 'Principal' , component: PrincipalComponent },
   { path: 'error' , component: ErrorComponent },
   { path: 'Jugadores' , component: JugadoresListadoComponent }, 
