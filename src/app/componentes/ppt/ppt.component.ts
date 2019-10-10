@@ -64,14 +64,18 @@ export class PptComponent implements OnInit {
     {
       case 'piedra':
         this.elementoSeleccionado = this.imagenPiedra;
-
-        if(this.elementoAsignado == this.imagenPiedra)
+ 
+        if(this.elementoAsignado == this.imagenPiedra){
           this.textoResultado= "¡Empataste!";
-        else if(this.elementoAsignado == this.imagenPapel)
+          this.saveJugada("Empato");
+        }
+        else if(this.elementoAsignado == this.imagenPapel){
           this.textoResultado= "¡Perdiste!";
+          this.saveJugada("Perdio");
+        }
         else{
           this.textoResultado= "¡Ganaste!";
-          this.saveJugada(10);
+          this.saveJugada("Gano");
         }
       break;
       
@@ -80,41 +84,52 @@ export class PptComponent implements OnInit {
 
         if(this.elementoAsignado == this.imagenPiedra) {
           this.textoResultado= "¡Ganaste!";
-          this.saveJugada(10);
+          this.saveJugada("Gano");
         }
-        else if(this.elementoAsignado == this.imagenPapel)
+        else if(this.elementoAsignado == this.imagenPapel) {
           this.textoResultado= "¡Empataste!";
-        else
+          this.saveJugada("Empato");
+        }          
+        else {
           this.textoResultado= "¡Perdiste!";
+          this.saveJugada("Perdio");
+        }
       break;
 
       case 'tijera':
         this.elementoSeleccionado = this.imagenTijera;
 
-        if(this.elementoAsignado == this.imagenPiedra)
+        if(this.elementoAsignado == this.imagenPiedra) {
           this.textoResultado= "¡Perdiste!";
+          this.saveJugada("Perdio");
+        }
+          
         else if(this.elementoAsignado == this.imagenPapel) {
           this.textoResultado= "¡Ganaste!";
-          this.saveJugada(10);
+          this.saveJugada("Gano");
         }
-        else
+        else {
           this.textoResultado= "¡Empataste!";
+          this.saveJugada("Empato");
+        }
       break;
     }
   }
 
-  saveJugada(puntaje: number) {
+  saveJugada(resultado: string) {
 
     this.jugada = {
     "jugador": localStorage.getItem('usuario'),
     "nombreJuego" :localStorage.getItem('juego'),
-    "puntaje": puntaje,
-    "fechaJugada": new Date()}
+    "puntaje": 10,
+    "fechaJugada": new Date(),
+    "resultado": resultado
+  }
 
     this.jugadaService.saveJugada(this.jugada)
     .then(response => console.log(response))
     .catch(error => console.log(error));
-  } 
+  }
 
   RepetirJuego() {
     this.ocultarResultados = true; 

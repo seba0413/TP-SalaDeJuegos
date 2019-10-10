@@ -1,8 +1,8 @@
-export interface Jugada {
+export interface JugadaViewModel {
     nombreJuego: string;
     jugador: string;
-    puntaje: number;
     fechaJugada: Date;
+    fecha: string;
     resultado: string;
 
 }

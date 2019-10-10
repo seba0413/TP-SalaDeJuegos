@@ -1,17 +1,21 @@
-<table class="table table-condensed">
+<app-cabecera>  </app-cabecera>
+<h2 style="text-align: center; color: darkblue;">Listado de Resultados</h2><br>
+
+<table class="table table-striped" *ngIf= "jugadas && jugadas.length > 0">
     <thead>
       <tr>
         <th>Juego</th>
         <th>Jugador</th>
         <th>Resultado</th>
+        <th>Fecha</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let juego of listado">
-        <td>{{juego.nombre}} </td>
+      <tr *ngFor="let juego of jugadas">
+        <td>{{juego.nombreJuego}} </td>
         <td>{{juego.jugador}} </td> 
-        <td *ngIf="juego.gano">Gano </td>   
-        <td *ngIf="!juego.gano">Perdio</td>     
+        <td >{{juego.resultado}}</td>
+        <td>{{juego.fecha}}</td>     
       </tr>     
     </tbody>
 </table>

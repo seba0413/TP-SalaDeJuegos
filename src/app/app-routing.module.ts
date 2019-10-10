@@ -13,6 +13,7 @@ import { PptComponent } from './componentes/ppt/ppt.component';
 import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
 import { PreguntadosComponent } from './componentes/preguntados/preguntados.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { ListadoDeResultadosComponent } from './componentes/listado-de-resultados/listado-de-resultados.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'Principal' , component: PrincipalComponent },
   { path: 'error' , component: ErrorComponent },
   { path: 'Jugadores' , component: JugadoresListadoComponent }, 
+  { path: 'Listado' , component: ListadoDeResultadosComponent }, 
   { path: 'Juegos' , component: JuegosComponent, children:
     [
        { path: 'Adivina' , component: AdivinaElNumeroComponent },

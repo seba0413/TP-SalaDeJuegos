@@ -57,10 +57,11 @@ export class AdivinaElNumeroComponent implements OnInit {
       this.MostarMensaje("Sos un Genio!!!",true);
       this.nuevoJuego.numeroSecreto=0;
       this.usuario = localStorage.getItem('usuario');
-      this.saveJugada(10);
+      this.saveJugada("Gano");
 
-    } else {
-
+    } 
+    else {
+      this.saveJugada("Perdio");
       let mensaje:string;
       switch (this.contador) {
         case 1:
@@ -117,13 +118,15 @@ export class AdivinaElNumeroComponent implements OnInit {
     console.info("objeto",x);
   } 
 
-    saveJugada(puntaje: number) {
+    saveJugada(resultado: string) {
 
     this.jugada = {
     "jugador": localStorage.getItem('usuario'),
     "nombreJuego" :localStorage.getItem('juego'),
-    "puntaje": puntaje,
-    "fechaJugada": new Date()}
+    "puntaje": 10,
+    "fechaJugada": new Date(),
+    "resultado": resultado
+  }
 
     this.jugadaService.saveJugada(this.jugada)
     .then(response => console.log(response))

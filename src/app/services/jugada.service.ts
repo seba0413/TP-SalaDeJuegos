@@ -16,4 +16,8 @@ export class JugadaService {
   saveJugada(jugada: Jugada): Promise<DocumentReference> {
     return this.db.collection(this.jugadaCollectionName).add(jugada);
   }
+
+  getJugadas(): Observable<firebase.firestore.QuerySnapshot> {
+    return this.db.collection<Jugada>(this.jugadaCollectionName, ref => ref.orderBy('fechaJugada')).get();
+  }
 }

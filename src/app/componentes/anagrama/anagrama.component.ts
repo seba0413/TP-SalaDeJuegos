@@ -109,8 +109,10 @@ export class AnagramaComponent implements OnInit {
 
     if(contador == this.anagramas.length) {
       this.gano = true; 
-      this.saveJugada(10);
+      this.saveJugada("Gano");
     }
+    else
+      this.saveJugada("Perdio");
   }
 
   MostarMensaje ( mensaje: string, ganador: boolean = false) {
@@ -138,13 +140,15 @@ export class AnagramaComponent implements OnInit {
       this.MostarMensaje("Segui participando", this.gano);
   }
 
-  saveJugada(puntaje: number) {
+  saveJugada(resultado: string) {
 
     this.jugada = {
     "jugador": localStorage.getItem('usuario'),
     "nombreJuego" :localStorage.getItem('juego'),
-    "puntaje": puntaje,
-    "fechaJugada": new Date()}
+    "puntaje": 10,
+    "fechaJugada": new Date(),
+    "resultado": resultado
+  }
 
     this.jugadaService.saveJugada(this.jugada)
     .then(response => console.log(response))

@@ -77,11 +77,12 @@ export class PreguntadosComponent implements OnInit {
     if(id == this.respuestaCorrecta) {
       this.gano = true; 
       this.MostarMensaje("¡Respuesta correcta!", this.gano);
-      this.saveJugada(10);
+      this.saveJugada("Gano");
     }
     else {
       this.gano = false; 
       this.MostarMensaje("Le pifiaste che", this.gano);
+      this.saveJugada("Perdio");
     }
     this.ocultarBotonSiguiente = false; 
     this.deshabilitarBotones(id - 1);
@@ -125,13 +126,15 @@ export class PreguntadosComponent implements OnInit {
     }, 3000);
   }
 
-  saveJugada(puntaje: number) {
+  saveJugada(resultado: string) {
 
     this.jugada = {
     "jugador": localStorage.getItem('usuario'),
     "nombreJuego" :localStorage.getItem('juego'),
-    "puntaje": puntaje,
-    "fechaJugada": new Date()}
+    "puntaje": 10,
+    "fechaJugada": new Date(),
+    "resultado": resultado
+  }
 
     this.jugadaService.saveJugada(this.jugada)
     .then(response => console.log(response))

@@ -60,10 +60,11 @@ export class AgilidadAritmeticaComponent implements OnInit {
       this.ocultarEsperando = true; 
       this.enviarJuego.emit(this.nuevoJuego); 
       this.MostarMensaje("¡Bien! No sos tan burr@!",true);
-      this.saveJugada(10);
+      this.saveJugada("Gano");
     }
     else {
       this.MostarMensaje("Batiste cualquiera ; ). ¡Proba otra vez!", false)
+      this.saveJugada("Perdio");
     }
     this.jugando = false; 
     this.nuevoJuego.resetearJuego();
@@ -95,13 +96,15 @@ export class AgilidadAritmeticaComponent implements OnInit {
     console.info("objeto",x);
   }  
 
-  saveJugada(puntaje: number) {debugger
+  saveJugada(resultado: string) {
 
     this.jugada = {
     "jugador": localStorage.getItem('usuario'),
     "nombreJuego" :localStorage.getItem('juego'),
-    "puntaje": puntaje,
-    "fechaJugada": new Date()}
+    "puntaje": 10,
+    "fechaJugada": new Date(),
+    "resultado": resultado
+  }
 
     this.jugadaService.saveJugada(this.jugada)
     .then(response => console.log(response))

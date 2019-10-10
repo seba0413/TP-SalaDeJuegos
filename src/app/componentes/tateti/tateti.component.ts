@@ -56,7 +56,7 @@ export class TatetiComponent implements OnInit {
       } else {
         this.mostrarMensaje("¡Ganaste, crack!", true);
         this.jugando = false; 
-        this.saveJugada(10);
+        this.saveJugada("Gano");
       }
     }
   }
@@ -80,6 +80,7 @@ export class TatetiComponent implements OnInit {
       else {
         this.mostrarMensaje("Perdiste. ¡Intentalo otra vez!", false);
         this.jugando = false; 
+        this.saveJugada("Perdio");
       }
     }
   }
@@ -149,18 +150,20 @@ export class TatetiComponent implements OnInit {
     }
   }
 
-  saveJugada(puntaje: number) {
+  saveJugada(resultado: string) {
 
     this.jugada = {
     "jugador": localStorage.getItem('usuario'),
     "nombreJuego" :localStorage.getItem('juego'),
-    "puntaje": puntaje,
-    "fechaJugada": new Date()}
+    "puntaje": 10,
+    "fechaJugada": new Date(),
+    "resultado": resultado
+  }
 
     this.jugadaService.saveJugada(this.jugada)
     .then(response => console.log(response))
     .catch(error => console.log(error));
-  } 
+  }
 
   resetearJuego(){
     this.ganaJugador = TatetiComponent.JUEGO_SIGUE;
