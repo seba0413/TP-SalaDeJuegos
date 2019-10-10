@@ -2,6 +2,8 @@
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 import { JuegoAdivina } from '../../clases/juego-adivina';
 import { FormsModule } from '@angular/forms';
+import { Jugada } from 'src/app/models/jugada';
+import { JugadaService } from 'src/app/services/jugada.service';
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -19,12 +21,17 @@ export class AdivinaElNumeroComponent implements OnInit {
   ocultarVerificar:boolean;
   ocultarEsperando: boolean = true; 
   ocultarIngrese: boolean = true; 
+  usuario: string; 
+  jugada: Jugada; 
  
-  constructor() { 
+  constructor(private jugadaService: JugadaService) { 
 
     this.nuevoJuego = new JuegoAdivina();
     console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
     this.ocultarVerificar=false;
+
+    localStorage.setItem('juego', 'adivina el numero');
+    
   }
 
   generarnumero() {
@@ -49,6 +56,8 @@ export class AdivinaElNumeroComponent implements OnInit {
       this.ocultarIngrese = true; 
       this.MostarMensaje("Sos un Genio!!!",true);
       this.nuevoJuego.numeroSecreto=0;
+      this.usuario = localStorage.getItem('usuario');
+      this.saveJugada(10);
 
     } else {
 
@@ -77,7 +86,7 @@ export class AdivinaElNumeroComponent implements OnInit {
             mensaje="Ya le erraste "+ this.contador+" veces";
           break;
       }
-      this.MostarMensaje("#"+this.contador+" "+mensaje+". Ayuda : "+this.nuevoJuego.retornarAyuda());
+      this.MostarMensaje("#" + this.contador + " " + mensaje + ". Ayuda : " + this.nuevoJuego.retornarAyuda());
     }
     console.info("numero Secreto:",this.nuevoJuego.gano);  
   }  
@@ -106,7 +115,20 @@ export class AdivinaElNumeroComponent implements OnInit {
 
     }, 3000);
     console.info("objeto",x);
-  }  
+  } 
+
+    saveJugada(puntaje: number) {
+
+    this.jugada = {
+    "jugador": localStorage.getItem('usuario'),
+    "nombreJuego" :localStorage.getItem('juego'),
+    "puntaje": puntaje,
+    "fechaJugada": new Date()}
+
+    this.jugadaService.saveJugada(this.jugada)
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+  } 
 
   focoEnInput(){
     setTimeout(()=>{

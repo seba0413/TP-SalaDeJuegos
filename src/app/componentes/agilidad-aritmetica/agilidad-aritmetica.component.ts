@@ -1,6 +1,9 @@
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 import { JuegoAgilidad } from '../../clases/juego-agilidad';
 import { Subscription } from "rxjs";
+import { Jugada } from 'src/app/models/jugada';
+import { JugadaService } from 'src/app/services/jugada.service';
+
 // import {TimerObservable} from "rxjs/observable/TimerObservable";
 
 @Component({
@@ -20,15 +23,17 @@ export class AgilidadAritmeticaComponent implements OnInit {
   mensaje: string;
   ocultarEsperando: boolean = true; 
   private subscription: Subscription;
+  jugada: Jugada;
 
   ngOnInit() {
   }
 
-   constructor() {
+   constructor(private jugadaService: JugadaService) {
       this.jugando = false; 
       this.ocultarVerificar=true;
       this.Tiempo=5; 
       this.nuevoJuego = new JuegoAgilidad();
+      localStorage.setItem('juego', 'agilidad aritmetica');
   }
 
   NuevoJuego() {
@@ -55,6 +60,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
       this.ocultarEsperando = true; 
       this.enviarJuego.emit(this.nuevoJuego); 
       this.MostarMensaje("¡Bien! No sos tan burr@!",true);
+      this.saveJugada(10);
     }
     else {
       this.MostarMensaje("Batiste cualquiera ; ). ¡Proba otra vez!", false)
@@ -88,6 +94,19 @@ export class AgilidadAritmeticaComponent implements OnInit {
     }, 3000);
     console.info("objeto",x);
   }  
+
+  saveJugada(puntaje: number) {debugger
+
+    this.jugada = {
+    "jugador": localStorage.getItem('usuario'),
+    "nombreJuego" :localStorage.getItem('juego'),
+    "puntaje": puntaje,
+    "fechaJugada": new Date()}
+
+    this.jugadaService.saveJugada(this.jugada)
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+  }
 
   focoEnInput(){
     setTimeout(()=>{

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Jugada } from 'src/app/models/jugada';
+import { JugadaService } from 'src/app/services/jugada.service';
 
 @Component({
   selector: 'app-ppt',
@@ -16,8 +18,9 @@ export class PptComponent implements OnInit {
   ocultarNuevoJuego: boolean;
   ocultarElementos: boolean; 
   ocultarResultados: boolean;  
+  jugada: Jugada;
 
-  constructor() {
+  constructor(private jugadaService: JugadaService) {
     this.imagenPiedra = "./assets/imagenes/piedra.jpg";
     this.imagenPapel = "./assets/imagenes/papel.jpg";
     this.imagenTijera = "./assets/imagenes/tijera.jpg";
@@ -25,6 +28,8 @@ export class PptComponent implements OnInit {
     this.ocultarNuevoJuego = false; 
     this.ocultarElementos = true;
     this.ocultarResultados = true; 
+
+    localStorage.setItem('juego', 'piedra, papel o tijera');
 
   }
 
@@ -64,31 +69,52 @@ export class PptComponent implements OnInit {
           this.textoResultado= "¡Empataste!";
         else if(this.elementoAsignado == this.imagenPapel)
           this.textoResultado= "¡Perdiste!";
-        else
+        else{
           this.textoResultado= "¡Ganaste!";
+          this.saveJugada(10);
+        }
       break;
+      
       case 'papel':
         this.elementoSeleccionado = this.imagenPapel;
 
-        if(this.elementoAsignado == this.imagenPiedra)
-          this.textoResultado= "¡Ganaste!"
+        if(this.elementoAsignado == this.imagenPiedra) {
+          this.textoResultado= "¡Ganaste!";
+          this.saveJugada(10);
+        }
         else if(this.elementoAsignado == this.imagenPapel)
           this.textoResultado= "¡Empataste!";
         else
           this.textoResultado= "¡Perdiste!";
       break;
+
       case 'tijera':
         this.elementoSeleccionado = this.imagenTijera;
 
         if(this.elementoAsignado == this.imagenPiedra)
           this.textoResultado= "¡Perdiste!";
-        else if(this.elementoAsignado == this.imagenPapel)
+        else if(this.elementoAsignado == this.imagenPapel) {
           this.textoResultado= "¡Ganaste!";
+          this.saveJugada(10);
+        }
         else
           this.textoResultado= "¡Empataste!";
       break;
     }
   }
+
+  saveJugada(puntaje: number) {
+
+    this.jugada = {
+    "jugador": localStorage.getItem('usuario'),
+    "nombreJuego" :localStorage.getItem('juego'),
+    "puntaje": puntaje,
+    "fechaJugada": new Date()}
+
+    this.jugadaService.saveJugada(this.jugada)
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+  } 
 
   RepetirJuego() {
     this.ocultarResultados = true; 

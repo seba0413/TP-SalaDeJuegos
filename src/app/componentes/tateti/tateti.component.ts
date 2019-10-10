@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Celda, MARCA_JUGADOR } from './celda';
 import { JuegoTaTeTi } from '../../clases/juego-tateti';
+import { Jugada } from 'src/app/models/jugada';
+import { JugadaService } from 'src/app/services/jugada.service';
 
 @Component({
   selector: 'app-tateti',
@@ -26,9 +28,12 @@ export class TatetiComponent implements OnInit {
 
   mensaje: string;
   ganaJugador: number;
+
+  jugada: Jugada; 
   
-  constructor() {
+  constructor(private jugadaService: JugadaService) {
     this.nuevoJuego = new JuegoTaTeTi();
+    localStorage.setItem('juego', 'ta te ti');
    }
 
   NuevoJuego() {
@@ -51,6 +56,7 @@ export class TatetiComponent implements OnInit {
       } else {
         this.mostrarMensaje("¡Ganaste, crack!", true);
         this.jugando = false; 
+        this.saveJugada(10);
       }
     }
   }
@@ -142,6 +148,19 @@ export class TatetiComponent implements OnInit {
       this.ganaJugador = jugador;
     }
   }
+
+  saveJugada(puntaje: number) {
+
+    this.jugada = {
+    "jugador": localStorage.getItem('usuario'),
+    "nombreJuego" :localStorage.getItem('juego'),
+    "puntaje": puntaje,
+    "fechaJugada": new Date()}
+
+    this.jugadaService.saveJugada(this.jugada)
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+  } 
 
   resetearJuego(){
     this.ganaJugador = TatetiComponent.JUEGO_SIGUE;

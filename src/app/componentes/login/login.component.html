@@ -37,13 +37,16 @@
         <h3>REGISTRO DE USUARIO</h3>
     </div>
     <div class="form-group">
-        <input type="text" [(ngModel)] = "nuevoUsuario" name="nuevoUsuario"  placeholder="Ingrese un nombre de usuario">
+        <input type="text" [(ngModel)] = "emailNuevo" name="emailNuevo"  placeholder="Ingrese un email ">
     </div>
     <div class="form-group">
-        <input type="password" [(ngModel)] = "nuevaContrasena" name="nuevaContrasena" placeholder="Ingrese una contraseña">
+        <input type="password" [(ngModel)] = "passwordNuevo" name="passwordNuevo" placeholder="Ingrese una contraseña">
     </div>
     <div class="form-group">
-        <button type="button" (click) = "registroDeUsuario()" class="btn btn-success btn-lg estilo-boton">Registrarse</button>
+        <input type="password" [(ngModel)] = "confirm" name="confirm" placeholder="Confirme la contraseña">
+    </div>
+    <div class="form-group">
+        <button type="button" (click) = "onRegister()" class="btn btn-success btn-lg estilo-boton">Registrarse</button>
     </div>
 </form>
 
@@ -52,13 +55,13 @@
         <h3>INGRESO DE USUARIO</h3>
     </div>
     <div class="form-group">
-        <input type="text" [(ngModel)] = "usuarioLogueado" name="usuarioLogueado" placeholder="Ingrese su usuario">
+        <input type="text" [(ngModel)] = "email" name="usuarioLogueado" placeholder="Ingrese su usuario">
     </div>
     <div class="form-group">
-        <input type="password" [(ngModel)] = "contrasenaUsuarioLogueado" name="contrasenaUsuarioLogueado"  placeholder="Ingrese su contraseña">
+        <input type="password" [(ngModel)] = "password" name="contrasenaUsuarioLogueado"  placeholder="Ingrese su contraseña">
     </div>
     <div class="form-group">
-        <button type="button" (click) = "ingresoDeUsuario()" class="btn btn-success btn-lg estilo-boton">Ingresar</button>
+        <button type="button" (click) = "onLogin()" class="btn btn-success btn-lg estilo-boton">Ingresar</button>
     </div>
 </form>
 

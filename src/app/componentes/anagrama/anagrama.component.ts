@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AnagramaObject } from './anagramaObject';
+import { JugadaService } from 'src/app/services/jugada.service';
+import { Jugada } from 'src/app/models/jugada';
+import { TagContentType } from '@angular/compiler';
 
 @Component({
   selector: 'app-anagrama',
@@ -19,8 +22,9 @@ export class AnagramaComponent implements OnInit {
   respuestas: Array<string>;
   gano: boolean; 
   mensaje: string; 
+  jugada: Jugada;
 
-  constructor() {
+  constructor(private jugadaService: JugadaService) {
     this.listaAnagramas = [
       (new AnagramaObject("sofa", ["faso", "fosa", "safo"])),
       (new AnagramaObject("camarera", ["caramera", "macerara", "recamara"])),
@@ -40,6 +44,8 @@ export class AnagramaComponent implements OnInit {
     this.ocultarBotones = true;
     this.ocultarInputs = true; 
     this.ocultarNuevoJuego = false; 
+
+    localStorage.setItem('juego', 'anagramas');
   }
 
   NuevoJuego() {
@@ -101,8 +107,10 @@ export class AnagramaComponent implements OnInit {
       }
     }
 
-    if(contador == this.anagramas.length)
+    if(contador == this.anagramas.length) {
       this.gano = true; 
+      this.saveJugada(10);
+    }
   }
 
   MostarMensaje ( mensaje: string, ganador: boolean = false) {
@@ -128,6 +136,19 @@ export class AnagramaComponent implements OnInit {
       this.MostarMensaje("¡Ganaste!", this.gano);
     else
       this.MostarMensaje("Segui participando", this.gano);
+  }
+
+  saveJugada(puntaje: number) {
+
+    this.jugada = {
+    "jugador": localStorage.getItem('usuario'),
+    "nombreJuego" :localStorage.getItem('juego'),
+    "puntaje": puntaje,
+    "fechaJugada": new Date()}
+
+    this.jugadaService.saveJugada(this.jugada)
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
   }
 
   resetearJuego() {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PreguntadosObject } from './preguntadosObject';
 import {Respuestas} from './respuestas';
+import { Jugada } from 'src/app/models/jugada';
+import { JugadaService } from 'src/app/services/jugada.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -19,8 +21,9 @@ export class PreguntadosComponent implements OnInit {
   mensaje: string; 
   gano: boolean; 
   botonesRespuesta: any;
+  jugada: Jugada;
 
-  constructor() {
+  constructor(private jugadaService: JugadaService) {
 
     this.listaPreguntas = [
       (new PreguntadosObject("¿Cual de estos equipos no es de la liga italiana?", [ (new Respuestas(1, "Sevilla")), (new Respuestas(2, "Torino")), (new Respuestas(3, "Juventus")), (new Respuestas(4, "Milan")) ], 1)),
@@ -58,6 +61,8 @@ export class PreguntadosComponent implements OnInit {
     this.ocultarNuevoJuego = false;
     this.ocultarBotonSiguiente = true; 
     this.contador = 0; 
+
+    localStorage.setItem('juego', 'preguntados futbol');
   }
   
   NuevoJuego() {
@@ -72,6 +77,7 @@ export class PreguntadosComponent implements OnInit {
     if(id == this.respuestaCorrecta) {
       this.gano = true; 
       this.MostarMensaje("¡Respuesta correcta!", this.gano);
+      this.saveJugada(10);
     }
     else {
       this.gano = false; 
@@ -79,8 +85,6 @@ export class PreguntadosComponent implements OnInit {
     }
     this.ocultarBotonSiguiente = false; 
     this.deshabilitarBotones(id - 1);
-   
-
   }
 
   siguiente() {
@@ -120,6 +124,19 @@ export class PreguntadosComponent implements OnInit {
       x.className = x.className.replace("show", "");
     }, 3000);
   }
+
+  saveJugada(puntaje: number) {
+
+    this.jugada = {
+    "jugador": localStorage.getItem('usuario'),
+    "nombreJuego" :localStorage.getItem('juego'),
+    "puntaje": puntaje,
+    "fechaJugada": new Date()}
+
+    this.jugadaService.saveJugada(this.jugada)
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+  } 
 
   ngOnInit() {
   }

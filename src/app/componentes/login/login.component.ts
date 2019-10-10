@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,21 +13,64 @@ export class LoginComponent implements OnInit {
   ocultarIngreso: boolean;
   ocultarImagen: boolean;
 
+  //Login Firebase
+  email: string; 
+  password: string; 
+
+  //Registro Firebase
+  emailNuevo: string; 
+  passwordNuevo: string; 
+  confirm: string; 
+
+  //Login localstorage
   usuarioLogueado: string;
   contrasenaUsuarioLogueado: string; 
 
+  //Registro Local Storage
   nuevoUsuario: string; 
-  nuevaContrasena: string; 
+  nuevaContrasena: string;
+
   usuariosString;
   usuarios;
 
-  constructor(private router: Router) { 
+  constructor(private userService: UserService, private router: Router) { 
     this.ocultarImagen = false; 
     this.ocultarRegistro = true; 
     this.ocultarIngreso = true; 
   }
 
-  registroDeUsuario() {debugger;
+  //Login y registro con Firebase
+  onLogin() {
+    
+    this.userService.login(this.email,this.password)
+    .then(data => {
+      localStorage.setItem('usuario', this.email);
+      this.router.navigate(['/Principal']); 
+    })
+    .catch(err => {
+      console.log(err);
+      alert("Usuario no registrado");
+    })
+  }
+
+  onRegister() {
+    
+    this.userService.register(this.emailNuevo,this.passwordNuevo, this.confirm)
+    .then(data => {
+      alert('Usuario registrado');
+      this.ocultarRegistro = true; 
+      this.ocultarImagen = false; 
+    })
+    .catch(err => {
+      console.log(err);
+      alert("Usuario no registrado");
+    })
+  }
+
+
+  //Registro y Login con LocalStorage
+
+  registroDeUsuario() {
     this.usuariosString =  localStorage.getItem('usuarios');
     this.usuarios = JSON.parse(this.usuariosString);
 
@@ -46,7 +90,7 @@ export class LoginComponent implements OnInit {
     this.ocultarImagen = false; 
   }
 
-  ingresoDeUsuario() {debugger
+  ingresoDeUsuario() {
     this.usuariosString =  localStorage.getItem('usuarios');
     this.usuarios = JSON.parse(this.usuariosString);
     var encontro = false; 
@@ -79,7 +123,3 @@ export class LoginComponent implements OnInit {
   }
 
 }
-
-var guardado = localStorage.getItem('datos');
-
-console.log('objetoObtenido: ', JSON.parse(guardado));
