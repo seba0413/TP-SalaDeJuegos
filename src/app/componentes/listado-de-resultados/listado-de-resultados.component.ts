@@ -17,7 +17,7 @@ export class ListadoDeResultadosComponent implements OnInit {
   constructor(private jugadaService: JugadaService) {
   }
 
-  loadJugadas() {debugger
+  loadJugadas() {
     this.jugadaService.getJugadas().subscribe(response=> {
       this.jugadas = [];
       response.docs.forEach(value => {

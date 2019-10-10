@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import { JugadoresService } from '../../servicios/jugadores.service';
+import { JugadaViewModel } from 'src/app/models/jugadaViewModel';
+import { JugadaService } from 'src/app/services/jugada.service';
 
 @Component({
   selector: 'app-jugadores-listado',
@@ -10,40 +11,61 @@ import { Component, OnInit } from '@angular/core';
 
 export class JugadoresListadoComponent implements OnInit {
 
-  listado:any
-  //miJugadoresServicio:JugadoresService
+  datos: JugadaViewModel[] = [];
+  datosAux: JugadaViewModel[] = [];
   
-    //constructor(serviceJugadores:JugadoresService) {
-     constructor() {
-      //this.miJugadoresServicio = serviceJugadores;      
-    }
-
-  ngOnInit() {
+  constructor(private jugadaService: JugadaService) {
   }
 
   TraerTodos(){
-    //alert("totos");
-    //this.miJugadoresServicio.traertodos('jugadores/','todos').then(data=>{
-      //console.info("jugadores listado",(data));
-      //this.listado= data;
 
-    //})
+    this.jugadaService.getJugadas().subscribe(response=> {
+      this.datos = [];
+      response.docs.forEach(value => {
+        const data = value.data();
+        const id = value.id;
+        const dato: JugadaViewModel = {
+          jugador: data.jugador,
+          nombreJuego: data.nombreJuego,
+          fechaJugada: data.fechaJugada.toDate(),
+          fecha: "",
+          resultado: data.resultado
+        };
+        this.unique(dato);
+      });
+    });
   }
 
-  TraerGanadores(){
-    //this.miJugadoresServicio.traertodos('jugadores/','ganadores').then(data=>{
-      //console.info("jugadores listado",(data));
-     // this.listado= data;
+  unique(dato) {
 
-    //})
+    var repetido = false;  
+
+    if(this.datos.length == 0)
+      this.datos.push(dato);
+
+    else {
+
+      for(var i = 0; i < this.datos.length; i++)
+      {
+        if(this.datos[i].jugador == dato.jugador)
+          repetido = true; 
+      }
+  
+      if(!repetido)
+        this.datos.push(dato);    
+    }  
+  }
+
+
+
+  TraerGanadores(){
   }
 
   TraerPerdedores(){
-    //this.miJugadoresServicio.traertodos('jugadores/','perdedores').then(data=>{
-      //console.info("jugadores listado",(data));
-      //this.listado= data;
+  }
 
-    //})
+  ngOnInit() {
+    this.TraerTodos();
   }
 
 }
